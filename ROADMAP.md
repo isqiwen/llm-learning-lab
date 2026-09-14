@@ -1,147 +1,62 @@
-# Roadmap
+# Roadmap — 能力门槛驱动的学习与研究
 
-This roadmap is designed for roughly **10–15 focused hours/week**. It is outcome-driven: each phase ends with an artifact that can be inspected, rerun, benchmarked, or reviewed.
+## 计划假设与完成口径
 
-## Phase 0 — Foundations (Weeks 1–4)
+基线投入为每周 10–15 小时，52 周约 520–780 小时，包含阅读、编码、实验分析、复盘和修复。这个投入尚需在 #22 中由学习者确认。它不意味着能在一年内完整学习所有列出的课程、复现所有原规模作业并保证取得原创突破。
 
-**Goal:** acquire only the math/ML background repeatedly used in LLM papers and implementations.
+只完整推进一条主线；数学/CS229/CS285/CS25 为按需选学。每个阶段包含复查和缓冲；落后时缩减选修或延长周期，不能把验收门槛改成“看过了”。W01 是相对学习周，不是自动绑定 2026-09-14 的截止日期。
 
-Focus:
-- Linear algebra: matrix operations, orthogonality, eigendecomposition, SVD
-- Probability and information theory: expectation, likelihood, entropy, cross-entropy, KL divergence
-- Optimization: gradients, chain rule, SGD, Adam
-- ML fundamentals: MLE/MAP, regularization, bias/variance
+## 能力等级
 
-Primary resources: selected MIT 18.06 and Stanford CS229 material.
+| 等级 | 可验证的能力 |
+|---|---|
+| L0 | 未接触或没有证据 |
+| L1 | 能不依赖照读笔记解释概念与假设 |
+| L2 | 能独立实现/推导，并通过正确性检查 |
+| L3 | 能复现实验、设计对照、解释误差和失败 |
+| L4 | 能形成可证伪问题并完成规范的研究循环 |
 
-**Gate:** derive cross-entropy/KL, follow tensor-shape derivations, and implement a small gradient-based optimization example.
+基础目标是关键组件达到 L2，核心实验达到 L3；研究阶段探索 L4。没有要求所有主题都达到 L4。
 
-## Phase 1 — Deep Learning (Weeks 5–8)
+## 八阶段
 
-**Goal:** understand the training loop before using high-level trainers.
+| 阶段 | 基线周次 | 必修工作包 | 阶段验收 |
+|---|---|---|---|
+| M1 / #2 | W01–04 | #22–25 | 能推导形状、交叉熵与梯度；有数值检验和学习缺口记录 |
+| M2 / #3 | W05–08 | #26–28 | NumPy 与 PyTorch 正反向对照，恢复测试，受控优化实验 |
+| M3 / #4 | W09–14 | #10–12、#29 | 分词器往返、因果性/梯度测试、Tiny GPT 和独立验证集 |
+| M4 / #5 | W15–26 | #30–32；共享 #13、#16–17 | 固定数据版本的端到端预训练；profiling、scaling/data 对照 |
+| M5 / #6 | W27–34 | #14–15、#33 | SFT/LoRA 与偏好/奖励实验；同时测真实效果与成本 |
+| M6 / #7 | W19–38，共享前期工时 | #13、#16–18；#34 按资源缩放 | 正确性、延迟/吞吐/显存、瓶颈解释；多卡不足时明确未实测 |
+| M7 / #8 | W39–46 | #19–20、#35 | 有基线、固定预算、隐藏测试、失败轨迹与消融的 Agent |
+| M8 / #9 | W47–52+ | #21、#36 | 一项复现 + 一个边界清楚的研究循环，允许负结果 |
 
-Focus:
-- Forward/backward propagation
-- Autograd
-- Initialization and normalization
-- SGD/Adam
-- PyTorch tensor/module/optimizer lifecycle
+更细的每周资源、输出和复盘见 [weekly-plan.md](docs/weekly-plan.md)。
 
-Primary resource: MIT 6.S191.
+## 依赖与复用
 
-**Artifact:** NumPy MLP + equivalent PyTorch model with explicit training/evaluation loop.
+主实现依赖：`#22 → #23/#24/#25 → #26/#27/#28 → #10/#11/#29 → #12`。评估器 #29 必须先于正式的模型效果报告。预训练 #30、数据 #32 与系统 #13 逐步集成，不要求彼此完整关闭才开始所有子步骤。
 
-## Phase 2 — Transformers (Weeks 9–14)
+后训练可以使用经过许可的现成小 base model，不必把“从零预训练高质量模型”当作硬前提。基础 Agent 实验也不必等待所有 RL 理论完成。路线图的顺序是教学建议，不是人为增加依赖。
 
-**Goal:** understand and implement a modern decoder-only Transformer.
+CS336 A2 与 Systems 中的 MatMul/Attention/profiling 使用同一套代码与报告；Tiny GPT 与 CS336 A1 通过差距审计复用。Epic 不重复计算子任务工时。#34 多进程正确性演示可先用 CPU，GPU 集群实验是有资源时的扩展。
 
-Focus:
-- BPE/tokenization
-- Embeddings and positional information
-- Self-attention and causal masking
-- Multi-head attention
-- MLP blocks, residuals, normalization
-- Autoregressive sampling
-- KV-cache fundamentals
+## 阶段门槛
 
-Primary resource: Stanford CS224N; practical companion: Hugging Face LLM Course.
+每次验收必须回答：我能否独立解释？代码是否正确？结果能否复跑？对照是否公平？有哪些反例/局限？
 
-**Artifacts:** BPE tokenizer, causal attention, decoder-only Transformer, Tiny GPT training run.
+M1/M2 的数学和梯度检查不通过，先修复；M3 没有可靠 masking/split，不进入效果优化；M4 没有数据血缘/成本记录，不报告 scaling 或数据质量结论；M5 奖励上升但任务成功率下降，记录失败而非宣布能力提高；M6 数值不正确则不能以速度验收；M7 没有隐藏测试或固定预算，不把挑选的案例称为成功率；M8 结论必须匹配证据，不要求正向收益或论文录用。
 
-## Phase 3 — Pretraining / Stanford CS336 (Weeks 15–26)
+## 必修、缩规模与选修
 
-**Goal:** learn the complete language-model development pipeline from raw data to evaluation.
+第一年必修：数学/训练基础、decoder-only LM、数据评估、可复现训练、至少一个后训练比较、一个 GPU/推理实验、一个 Agent 评估、一次复现。
 
-Workstreams:
-- Model/tokenizer/optimizer/training implementation
-- Profiling and GPU efficiency
-- Data preparation and quality
-- Scaling laws and compute allocation
-- End-to-end pretraining
+按预算缩规模：训练 token 数、模型规模、scaling 网格、RL rollout、任务集规模。每次缩放需记录与原论文/课程的差异，不能声称复现了原规模结果。
 
-**Artifact:** a reproducible small LM trained from raw text, with training curves, evaluation, data documentation, and systems profile.
+选修：大型 MoE/多模态预训练、FP8 全链路、TP/PP/CP/EP 全部实现、生产级服务平台、大规模自动科研。选修不会阻塞主线验收。
 
-## Phase 4 — Post-training (Weeks 27–34)
+## 周节奏与回顾
 
-**Goal:** understand how base models become instruction-following and reasoning models.
+以 12 小时为例：理论 3h、实现 5h、测量分析 2h、复盘 1h、缓冲 1h。每四周调整一次；最多保留两个 In Progress。下一阶段开始前展开未来 2–4 周的详细任务，远期只维护工作包。
 
-Focus:
-- SFT and chat formatting
-- Packing and masking
-- LoRA / QLoRA
-- Preference data and reward models
-- DPO
-- PPO/GRPO concepts
-- Reasoning/verifier-oriented post-training
-
-**Artifact:** a controlled comparison of base, SFT, parameter-efficient, and preference-optimized variants.
-
-## Phase 5 — LLM Systems (Weeks 20–38, overlaps Phases 3–4)
-
-This is a specialization track and should run in parallel once Transformer fundamentals are solid.
-
-Focus:
-- CUDA execution/memory hierarchy/Tensor Cores
-- Triton
-- Tiled/fused MatMul
-- FlashAttention
-- BF16/FP16/FP8 and memory accounting
-- KV cache / PagedAttention / continuous batching
-- Speculative decoding
-- DDP/FSDP/ZeRO and TP/PP/CP/EP
-- NCCL collectives and communication cost
-- Profiling and bottleneck analysis
-
-Primary resource: GPU MODE + CS336 systems material.
-
-**Artifact:** benchmark suite showing at least one measured kernel/runtime optimization with correctness validation.
-
-## Phase 6 — Reasoning & Agents (Weeks 39–46)
-
-**Goal:** treat agents as generate–verify–search–act systems rather than prompt wrappers.
-
-Focus:
-- Test-time compute
-- Best-of-N / majority voting
-- Outcome and process verifiers
-- Search and planning
-- Tool use and execution feedback
-- Memory
-- Coding/research agents
-- Long-horizon evaluation
-
-Primary resource: Stanford CS329A.
-
-**Artifact:** a coding agent whose loop uses objective feedback such as compile/test/benchmark results.
-
-## Phase 7 — Research (Weeks 47–52 and ongoing)
-
-**Goal:** transition from learning established material to generating evidence.
-
-Workflow:
-1. Select a recent paper.
-2. Reproduce a baseline claim.
-3. Run ablations.
-4. Identify failure modes.
-5. Form a falsifiable hypothesis.
-6. Run controlled experiments.
-7. Report positive and negative results.
-
-Preferred specialization: **LLM Systems + Reasoning/Coding Agents**.
-
-**Artifact:** first complete research report with reproducible code, baseline, ablations, results, and limitations.
-
-## Milestones
-
-- M1 — Math/ML foundations ready
-- M2 — Deep-learning training loop understood and implemented
-- M3 — Decoder-only Transformer + Tiny GPT complete
-- M4 — Stanford CS336 / end-to-end pretraining complete
-- M5 — Post-training pipeline complete
-- M6 — LLM systems benchmark/optimization portfolio complete
-- M7 — Stanford CS329A + verifier/search agent complete
-- M8 — First paper reproduction and original research project complete
-
-## Execution policy
-
-Only keep a small number of tasks `In Progress` simultaneously. Prefer one conceptual task plus one implementation task. New topics remain in `Backlog` until prerequisites and an explicit deliverable are clear.
+研究阅读从 W09 逐步开始，每阶段至少一篇深读并对应一个小实验。不要把“研究方法”推迟到最后六周才学。W47–52 是第一轮集中研究与复盘，不是研究结束。

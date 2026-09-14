@@ -1,32 +1,41 @@
 ---
-name: Learning / research task
-about: Track a course, implementation, experiment, paper, or milestone
-title: ""
+name: Learning / implementation / experiment
+about: Track a capability or falsifiable experiment with evidence
 labels: ""
 assignees: ""
 ---
 
-**Phase:** Foundations / Deep Learning / Transformers / Pretraining / Post-training / LLM Systems / Reasoning & Agents / Research  
-**Type:** Course / Reading / Implementation / Experiment / Paper / Milestone  
-**Priority:** P0 / P1 / P2 / P3  
+**Phase:**
+**Kind:** Learning / Implementation / Experiment / Evaluation / Research / Operations
+**Priority:** P0 / P1 / P2 / P3
 **Effort:** S / M / L / XL
+**Target:** relative learning week; not an assumed calendar deadline
+**Parent:**
+**Depends on:**
 
-## Objective
+## Objective / hypothesis
 
-What capability or question does this task address?
+What capability or falsifiable question is addressed?
 
-## Scope
+## Resources
 
-- 
+Official course/paper URL, version and selected topics. State access restrictions.
 
 ## Deliverables
 
-- [ ] 
+- [ ] Independent explanation / derivation
+- [ ] Implementation or experiment artifact
+- [ ] Correctness checks and reproducible commands
+- [ ] Results, failures, costs and limitations
 
-## Validation / exit criteria
+## Experiment design (when applicable)
 
-What objective evidence demonstrates completion?
+Baseline, main metric, controlled variables, data split, seeds/tasks, budget, stop rule.
 
-## Notes / results
+## Acceptance evidence
 
-Record measurements, failures, decisions, and follow-up questions here or link to the relevant artifact.
+Code commit, report, raw metrics, commands, learner review. Negative results can pass; generated code alone does not establish mastery.
+
+## Progress
+
+Planned / running / review / completed / inconclusive. Text here does not automatically set GitHub Project fields.

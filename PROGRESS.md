@@ -1,56 +1,30 @@
-# Progress
+# Progress — 验收证据台账
 
-This file records completed outcomes and evidence. Day-to-day execution belongs in GitHub Issues/Project.
+## 当前状态
 
-## Current phase
+学习规划已初始化并细化；下一步为 #22 能力诊断与实验环境。**尚无本人学习/模型训练/研究实验通过验收的证据**。这不代表本人没有相关知识，而是本仓库还没有评估记录。
 
-**Phase 0 — Foundations**
-
-## Milestone status
-
-| Milestone | Status | Evidence |
+| 阶段 | 学习成果状态 | 验收证据 |
 |---|---|---|
-| M1 Foundations | Not started | — |
-| M2 Deep Learning | Not started | — |
-| M3 Transformers | Not started | — |
-| M4 Pretraining / CS336 | Not started | — |
-| M5 Post-training | Not started | — |
-| M6 LLM Systems | Not started | — |
-| M7 Reasoning & Agents | Not started | — |
-| M8 Research | Not started | — |
+| M1 #2 Foundations | 待诊断/验收 | — |
+| M2 #3 Deep Learning | 未记录验收 | — |
+| M3 #4 Transformers | 未记录验收 | — |
+| M4 #5 Pretraining / A1–A4 | 未记录验收 | — |
+| M5 #6 Post-training / A5 | 未记录验收 | — |
+| M6 #7 LLM Systems | 未记录验收 | — |
+| M7 #8 Reasoning & Agents | 未记录验收 | — |
+| M8 #9 Research | 未记录验收 | — |
 
-## Evidence policy
+## 管理基础设施，不计作学习完成
 
-A milestone should not be marked complete merely because lectures were watched. Add evidence such as:
-- implementation path
-- experiment result
-- benchmark table
-- training curves
-- paper/reproduction report
-- commit/PR
+2026-09-14：规划细化为八阶段、52 周基线、实验规范、研究门槛与 Project 初始化方案。新增 #22–#36，仓库合计 #1–#36。阶段任务仍开放。
 
-## Monthly review template
+Project 同步脚本提供本地计划校验、只读预览和显式 --apply；它不覆盖已有进度。管理工具的本地单元测试不能证明 GitHub Projects 已成功写入。当前会话尚未验证远端 Project 字段/Views 或条目导入。
 
-### YYYY-MM
+## 验收记录格式
 
-**Completed**
-- 
+每条完成记录包含：日期、Issue、学习者可解释的能力、代码/报告路径、commit、测试/实验命令、原始结果摘要、局限、本人确认。使用 templates/weekly-review.md 做周复盘，不提前填学习结果。
 
-**Key technical insights**
-- 
+## 变更日志
 
-**Experiments and measurements**
-- 
-
-**Failures / unresolved questions**
-- 
-
-**Next month**
-- 
-
-## Research log
-
-Record major transitions here once research begins:
-
-| Date | Question/Hypothesis | Experiment | Result | Next decision |
-|---|---|---|---|---|
+已纠正：M4 不再代表 CS336 全五个作业均完成；A5 映射 M5。52 周改为资源受限的可调整基线；研究验收不再以必须提升或发表作为标准。重复系统任务共享产物与工时。

@@ -1,0 +1,29 @@
+# Local environments and secrets
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+
+# Local data and large experiment artifacts
+/data/
+/datasets/
+/checkpoints/
+/runs/
+/artifacts/
+/wandb/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.pem
+*.key
+
+# Keep large/private outputs outside Git; commit small audited summaries explicitly.
